@@ -1,42 +1,56 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>unimetroforum</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <h1> Bem vindos ao Unimetrofórum</h1>
-  <h3> A rede social exclusiva da unimetrocamp</h3>
-  <br> <br>
-  <div class= login-container>
-    <div class= login-box>
-      <h2>Login:</h2>
-      <br>
-      <p>Usuário: </p>
-      <input type="text">
-      <br>
-      <p>Senha: </p>
-      <input type="text">
+  <h1>Unimetrofórum</h1>
+  <h3>A rede social exclusiva da Unimetrocamp</h3>
+  <br>
+
+  <fieldset>
+    <legend>Login</legend>
+    <div class="login-container">
+      <div class="login-box">
+        <legend><h2>Login</h2></legend>
+        <p>Usuário:</p>
+        <input type="text" name="usuario" placeholder="Digite seu usuário">
+        <br>
+        <p>Senha:</p>
+        <input type="password" name="senha" placeholder="Digite sua senha">
+        <br>
+        <button type="submit">Entrar</button>
+      </div>
     </div>
-    <div class= login-box>
-      <h2>Não tem cadastro ainda?</h2>
+  </fieldset>
+
+  <br>
+
+  <form action="https://webhook.site/71e77041-2b21-47e5-b163-23a3903690ff?" method="post" target="_blank">
+    <fieldset>
+      <legend><h2>Não tem cadastro ainda?</h2></legend>
       <br>
-      <p>Novo usuário: </p>
-      <input type="text">
+      <div>
+        <label for="input_novousuario">Novo usuário:</label>
+        <br>
+        <input id="input_novousuario" type="text" name="novousuario" placeholder="Digite seu novo usuário">
+      </div>
       <br>
-      <p>Nova senha: </p>
-      <input type="text">
-      <p>Curso: </p>
-      <input type="text">
-      <p>Matrícula: </p>
-      <input type="text">
-    </div>
-  </div>
+      <div>
+        <label for="input_novasenha">Nova senha:</label>
+        <br>
+        <input id="input_novasenha" type="password" name="novasenha" placeholder="Digite sua nova senha">
+      </div>
+      <br>
+      <button type="submit">Cadastrar</button>
+    </fieldset>
+  </form>
+
   <script src="script.js"></script>
 </body>
 
