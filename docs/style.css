@@ -1,11 +1,59 @@
 html {
-    height: 100%;
-    width: 100%;
-    color:white;
-  }
-    body {
-        background-image: url(https://images.wallpapersden.com/image/download/cyberpunk-city-pixel-art_bGtnbmeUmZqaraWkpJRnZWltrWZmamc.jpg); /* Substitua 'nome-da-imagem.jpg' pelo nome do arquivo da sua imagem */
-        background-size: cover; /* Faz com que a imagem cubra toda a área do fundo */
-        background-position: center; /* Centraliza a imagem de fundo */
-        background-repeat: no-repeat; /* Evita que a imagem se repita */
-  }
+  height: 100%;
+  width: 100%;
+  font-family: 'OCR A Std', monospace;
+  color: white;
+  text-shadow: 
+    1px 1px 0 black,
+   -1px -1px 0 black,
+    1px -1px 0 black,
+   -1px 1px 0 black;
+}
+
+body {
+  background-image: url("https://w.wallha.com/ws/14/QvWB2dAc.png"); /* Substitua 'nome-da-imagem.jpg' pelo nome do arquivo da sua imagem */
+  background-size: cover; /* Faz com que a imagem cubra toda a área do fundo */
+  background-position: center; /* Centraliza a imagem de fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+form {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+}
+header {
+  text-align: center; /* Centraliza o texto no header */
+  margin: 20px 0; /* Margens superior e inferior */
+}
+
+/* Estilo para o h1 no header */
+header h1 {
+  color: red; /* Cor do texto para o h1 */
+  font-size: 2.5rem; /* Tamanho da fonte para o h1 */
+  text-shadow: 
+    -4px 0 0 white, /* Borda do lado esquerdo */
+    0 4px 2px white, /* Borda inferior */
+   -4px 4px 0 white; /* Borda inferior esquerda */
+}
+
+/* Estilo para o h3 no header */
+header h3 {
+  color: white; /* Cor do texto para o h3 */
+  font-size: 1.5rem; /* Tamanho da fonte para o h3 */
+  text-shadow: 1px 1px 5px black; /* Borda preta ao redor do texto */
+}
+form fieldset {
+  border: 2px solid white; /* Aumenta a borda do fieldset */
+  border-radius: 8px; /* Adiciona bordas arredondadas se desejar */
+  padding: 20px; /* Adiciona espaçamento interno ao fieldset */
+  margin: 10px 0; /* Adiciona margem superior e inferior para separar os fieldsets */
+}
