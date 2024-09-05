@@ -57,3 +57,7 @@ form fieldset {
   padding: 20px; /* Adiciona espaçamento interno ao fieldset */
   margin: 10px 0; /* Adiciona margem superior e inferior para separar os fieldsets */
 }
+.separacao {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;}
