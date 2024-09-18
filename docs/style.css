@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-image: url("https://w.wallha.com/ws/14/QvWB2dAc.png"); /* Substitua 'nome-da-imagem.jpg' pelo nome do arquivo da sua imagem */
+  background-image: url(/docs/QvWB2dAc-wallha.com.png); /* Substitua 'nome-da-imagem.jpg' pelo nome do arquivo da sua imagem */
   background-size: cover; /* Faz com que a imagem cubra toda a área do fundo */
   background-position: center; /* Centraliza a imagem de fundo */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
