@@ -32,3 +32,14 @@ footer {
   text-align: center;
   clear: both;
 }
+.botao {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: red; /* Cor de fundo */
+  color: white;              /* Cor do texto */
+  text-align: center;
+  text-decoration: none;      /* Remove o sublinhado do link */
+  border-radius: 5px;         /* Bordas arredondadas */
+  font-size: 16px;            /* Tamanho da fonte */
+  transition: background-color 0.3s; /* Transição suave ao passar o mouse */
+}
