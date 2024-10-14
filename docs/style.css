@@ -3,11 +3,7 @@ html {
   width: 100%;
   font-family: 'OCR A Std', monospace;
   color: white;
-  text-shadow: 
-    1px 1px 0 black,
-   -1px -1px 0 black,
-    1px -1px 0 black,
-   -1px 1px 0 black;
+  
 }
 
 body {
@@ -87,7 +83,10 @@ form fieldset {
   flex: 1 1 auto;
 }
 .botao {
+  
+  cursor: pointer;
   background: none;
+  
   display: inline-block;
   padding: 10px 20px;
    /* Cor de fundo */
@@ -218,4 +217,8 @@ img {
 
 .linkamigo:hover .cabecalho {
   background-color: rgba(255, 255, 255, 0.2);
+}
+input {
+  border: 2px solid red;
+  border-radius: 4px;
 }
