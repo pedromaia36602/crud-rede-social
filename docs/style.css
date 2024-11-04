@@ -12,6 +12,14 @@
     font-style: normal;
 }
 
+h1{
+  color: white; /* Cor do texto para o h1 */
+  text-shadow: 
+    -4px 0 0 black, /* Borda do lado esquerdo */
+    0 4px 2px black, /* Borda inferior */
+   -4px 4px 0 black; /* Borda inferior esquerda */
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -191,6 +199,10 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
         padding: 0; /* Removes padding for alignment */
     }
 }
+
+
+
+
 
 .cabecalho {
   display: flex;
