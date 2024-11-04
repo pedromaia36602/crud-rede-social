@@ -66,13 +66,22 @@ header {
 }
 
 /* Estilo para o h1 no header */
-header h1 {
+header h1, .menu h1 {
   color: red; /* Cor do texto para o h1 */
   font-size: 2.5rem; /* Tamanho da fonte para o h1 */
   text-shadow: 
     -4px 0 0 white, /* Borda do lado esquerdo */
     0 4px 2px white, /* Borda inferior */
    -4px 4px 0 white; /* Borda inferior esquerda */
+}
+
+.menu {
+    text-align: center; /* Centraliza o texto horizontalmente */
+}
+
+.menu h1 {
+    display: inline-block; /* Permite centralizar usando text-align no pai */
+    margin: 0; /* Remove margens padrão */
 }
 
 /* Estilo para o h3 no header */
@@ -118,52 +127,69 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+.menu {
+    position: relative;
 }
 
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 20px;
+/* Styles for the hamburger button */
+.hamburger {
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px;
+    color: white; /* Change this to your desired color */
 }
 
-nav li {
-  cursor: pointer;
-display: inline-block;
-padding: 10px 20px; /* Mantém apenas uma definição de padding */
-color: white; /* Cor do texto */
-text-align: center;
-text-decoration: none; /* Remove o sublinhado do link */
-border: 4px solid white; /* Borda mais grossa */
-border-radius: 0; /* Remove as bordas arredondadas */
-margin: 10px 0; /* Mantém a margem */
-font-size: 16px; /* Tamanho da fonte */
-transition: background-color 0.3s; /* Transição suave ao passar o mouse */
-
+/* Styles for the navigation */
+.nav {
+    display: none; /* Initially hides the menu */
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 
-nav li a {
-  color: inherit;
-  text-decoration: none;
+/* Styles for the list */
+.nav ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-nav li:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+/* Styles for list items */
+.nav ul li {
+    padding: 10px 15px;
 }
 
-nav h1 {
-  color: red;
-  font-size: 2.5rem;
-  text-shadow: 
-    -4px 0 0 white,
-    0 4px 2px white,
-   -4px 4px 0 white;
-  margin: 0;
+/* Styles for links */
+.nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Show the menu in mobile */
+.nav.show {
+    display: block;
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none; /* Hides the hamburger button on larger screens */
+    }
+
+    .nav {
+        display: block; /* Shows the navigation normally */
+        position: static; /* Removes absolute positioning */
+        box-shadow: none; /* Removes shadow */
+    }
+
+    .nav ul {
+        display: flex; /* Displays items in a row */
+        justify-content: space-around; /* Space between items */
+    }
+
+    .nav ul li {
+        padding: 0; /* Removes padding for alignment */
+    }
 }
 
 .cabecalho {
