@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br"> <!-- Alterado para incluir o atributo "lang" -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,67 +14,73 @@
   <br>
 
   <div class="form-container">
-    <form  action="https://webhook.site/2d0e7bd2-e973-49b6-a623-4409d5bbc1d5" method="post" target="_blank">
+    <!-- Formulário de Login -->
+    <form id="formLogin" action="login.php" method="POST"> <!-- Adiciona o id "formLogin" -->
       <fieldset>
         <legend><h2>Login</h2></legend>
         <br>
         <div>
           <label for="input_usuario"><h4>Usuário:</h4></label>
-          <input id="input_usuario" type="text" name="usuario" placeholder="Digite seu usuário">
+          <input id="input_usuario" type="text" name="usuario" placeholder="Digite seu usuário" required> <!-- Adicionado required -->
         </div>
         <br>
         <div>
           <label for="input_senha"><h4>Senha:</h4></label>
-          <input id="input_senha" type="password" name="senha" placeholder="Digite sua senha">
+          <input id="input_senha" type="password" name="senha" placeholder="Digite sua senha" required> <!-- Adicionado required -->
         </div>
         <br>
         <button class="botao" type="submit">Entrar</button>
       </fieldset>
     </form>
 
-    <form  action="https://webhook.site/2d0e7bd2-e973-49b6-a623-4409d5bbc1d5" method="post" target="_blank">
+    <!-- Formulário de Cadastro -->
+    <form id="formCadastro" method="POST"> <!-- Remover a ação "action" -->
       <fieldset>
         <legend><h2>Não tem cadastro ainda?</h2></legend>
         <br>
-        <div class ="separacao">
-        <div>
-          <label for="input_novousuario"><h4>Novo usuário:</h4></label>
-          <input id="input_novousuario" type="text" name="novousuario" placeholder="Digite seu novo usuário">
-        </div>
-        <div>
-          <label for="input_novoemail"><h4>Novo e-mail:</h4></label>
-          <input id="input_novoemail" type="email" name="novoemail" placeholder="Digite seu email">
-        </div>
-        <br>
-        <div>
-          <label for="input_novasenha"><h4>Nova senha:</h4></label>
-          <input id="input_novasenha" type="password" name="novasenha" placeholder="Digite sua nova senha">
-        </div>
-      </div>
-        <div class ="separacao">
-        <div>
-          <label for="input_novadatanascimento"><h4>Data de nascimento:</h4></label>
-          <input id="input_novousuario" type="date" name="novadatanascimento" placeholder="Digite sua data de nascimento:"">
-        </div>
-        <div>
-          <label for="input_novamatricula"><h4>Matrícula:</h4></label>
-          <input id="input_novamatricula" type="number" name="novamatricula" placeholder="Digite sua matrícula:"">
-          <button class="botao" type="submit">Cadastrar</button>
+        <div class="separacao">
+          <div>
+            <label for="input_novousuario"><h4>Nome de usuário:</h4></label>
+            <input id="input_novousuario" type="text" name="novousuario" placeholder="Digite seu novo usuário" required> <!-- Adicionado required -->
+          </div>
+          <div>
+            <label for="input_novoemail"><h4>Novo e-mail:</h4></label>
+            <input id="input_novoemail" type="email" name="novoemail" placeholder="Digite seu email" required> <!-- Adicionado required -->
+          </div>
         </div>
         <br>
-       
-      </div>
+        <div class="separacao">
+          <div>
+            <label for="input_novasenha"><h4>Nova senha:</h4></label>
+            <input id="input_novasenha" type="password" name="novasenha" placeholder="Digite sua nova senha" required> <!-- Adicionado required -->
+          </div>
+          <div>
+            <label for="input_novadatanascimento"><h4>Data de nascimento:</h4></label>
+            <input id="input_novadatanascimento" type="date" name="novadatanascimento" placeholder="Digite sua data de nascimento" required> <!-- Alterado o id duplicado e adicionado required -->
+          </div>
+        </div>
+        <div class="separacao">
+          <div>
+            <label for="input_novamatricula"><h4>Matrícula:</h4></label>
+            <input id="input_novamatricula" type="number" name="novamatricula" placeholder="Digite sua matrícula" required> <!-- Adicionado required -->
+          </div>
+        </div>
+        <br>
+        <button class="botao" type="submit">Cadastrar</button>
       </fieldset>
     </form>
   </div>
 
+  <!-- Links para outras páginas -->
   <a href="index2.html" class="botao">Ir para Outra Página</a>
-  <a href="perfilusuario.html" class="botao">Ir para perfil do usuario</a>
+  <a href="perfilusuario.html" class="botao">Ir para perfil do usuário</a>
   <a href="amigos.html" class="botao">Ir para amigos</a>
   <a href="perfil1.html" class="botao">Ir para perfil 1</a>
   <a href="perfil2.html" class="botao">Ir para perfil 2</a>
 
-
+  <!-- Scripts -->
+  <script src="cadastro.js"></script> <!-- Seu JavaScript de cadastro -->
+  <script src="login.js"></script>    <!-- Seu JavaScript de login -->
   <script src="script.js"></script>
 </body>
 </html>
