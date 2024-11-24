@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['novasenha'] ?? '';
     $data_nascimento = $_POST['novadatanascimento'] ?? '';
     $matricula = $_POST['novamatricula'] ?? '';
+    $curso = $_POST['novocurso'] ?? '';
 
     // Validar os dados
-    if (empty($nome) || empty($email) || empty($senha) || empty($data_nascimento) || empty($matricula)) {
+    if (empty($nome) || empty($email) || empty($senha) || empty($data_nascimento) || empty($matricula) || empty($curso)) {
         echo json_encode(['success' => false, 'message' => 'Todos os campos são obrigatórios!']);
         exit;
     }
@@ -42,12 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = new SQLite3('rede_social.db');
 
     // Preparar a query para inserir os dados
-    $query = $db->prepare("INSERT INTO usuarios (nome, email, senha, data_nascimento, matricula) VALUES (:nome, :email, :senha, :data_nascimento, :matricula)");
+    $query = $db->prepare("INSERT INTO usuarios (nome, email, senha, data_nascimento, matricula,curso) VALUES (:nome, :email, :senha, :data_nascimento, :matricula, :curso)");
     $query->bindValue(':nome', $nome);
     $query->bindValue(':email', $email);
     $query->bindValue(':senha', $senha_hash);
     $query->bindValue(':data_nascimento', $data_nascimento);
     $query->bindValue(':matricula', $matricula);
+    $query->bindValue(':curso', $curso);
 
     // Executar a query
     if ($query->execute()) {

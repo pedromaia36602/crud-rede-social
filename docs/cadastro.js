@@ -2,36 +2,19 @@ document.getElementById('formCadastro').addEventListener('submit', function(e) {
     e.preventDefault(); // Previne o envio padrão do formulário
 
     // Captura os dados do formulário
-    const nome = document.getElementById('input_novousuario').value;
-    const email = document.getElementById('input_novoemail').value;
-    const senha = document.getElementById('input_novasenha').value;
-    const matricula = document.getElementById('input_novamatricula').value;
-    const dataNascimento = document.getElementById('input_novadatanascimento').value;
+    const formData = new FormData(this);
 
-    // Cria o objeto de dados para enviar
-    const dados = {
-        novousuario: nome,
-        novoemail: email,
-        novasenha: senha,
-        novamatricula: matricula,
-        novadatanascimento: dataNascimento
-    };
-
-    // Envia os dados para o PHP via fetch (JSON)
+    // Envia os dados para o PHP via fetch
     fetch('cadastro.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dados) // Envia os dados como JSON
+        body: formData // Envia os dados no formato esperado pelo PHP
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Usuário cadastrado com sucesso!');
-            window.location.href = 'login.html'; // Redireciona para a página de login
+            alert('Usuário cadastrado com sucesso!'); // Exibe o pop-up de sucesso
         } else {
-            alert('Erro ao cadastrar usuário: ' + data.message);
+            alert('Erro ao cadastrar usuário: ' + data.message); // Exibe o pop-up de erro
         }
     })
     .catch(error => {

@@ -1,14 +1,13 @@
 <?php
+session_start(); // Inicia a sessão
+
 // Definir o cabeçalho como JSON
 header('Content-Type: application/json');
 
-// Recebe dados via JSON
-$dados = json_decode(file_get_contents('php://input'), true);
-
-// Verifica se os dados foram recebidos corretamente
-if (isset($dados['usuario']) && isset($dados['senha'])) {
-    $usuario = $dados['usuario'];
-    $senha = $dados['senha'];
+// Recebe dados via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = trim($_POST['usuario'] ?? '');
+    $senha = trim($_POST['senha'] ?? '');
 
     // Conectar ao banco de dados SQLite
     $db = new SQLite3('rede_social.db');
@@ -19,10 +18,11 @@ if (isset($dados['usuario']) && isset($dados['senha'])) {
     $result = $stmt->execute();
     
     // Verifica se o usuário foi encontrado
-    if ($row = $result->fetchArray()) {
+    if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         // Verifica se a senha corresponde
         if (password_verify($senha, $row['senha'])) {
-            // Senha correta
+            // Senha correta: salva o ID do usuário na sessão
+            $_SESSION['usuario_id'] = $row['id'];
             echo json_encode(["success" => true]);
         } else {
             // Senha incorreta
@@ -37,4 +37,3 @@ if (isset($dados['usuario']) && isset($dados['senha'])) {
 } else {
     echo json_encode(["success" => false, "message" => "Dados inválidos!"]);
 }
-?>

@@ -12,7 +12,7 @@
     font-style: normal;
 }
 
-h1{
+h1,h2{
   color: white; /* Cor do texto para o h1 */
   text-shadow: 
     -4px 0 0 black, /* Borda do lado esquerdo */
@@ -43,9 +43,7 @@ body {
 .body-perfil2 {
   background-image: url(1293302.jpg);
 }
-.body-perfilusuario {
-  background-image: url(lofi-boy-pixel-art-1920x1080-15205.png);
-}
+
 
 .body-perfil1 {
   background-image: url(gihapeghvmy61.png);
@@ -111,8 +109,10 @@ form fieldset {
   padding: 20px;
   flex-wrap: wrap;
 }
-.separacao>* {
-  flex: 1 1 auto;
+.separacao > * {
+  flex: 1 1 0; /* Garante que todas as divisões tenham o mesmo tamanho */
+  max-width: 48%; /* Controla o tamanho máximo, ajustando para caber duas por linha */
+  box-sizing: border-box; /* Inclui o padding e borda no cálculo do tamanho */
 }
 .botao {
   
@@ -159,6 +159,7 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
 .nav ul {
     list-style-type: none;
     padding: 0;
+
 }
 
 /* Styles for list items */
@@ -169,6 +170,7 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
     width: 100%;
   border: 2px solid white; /* Borda mais grossa */
   border-radius: 0; /* Remove as bordas arredondadas */
+
 }
 
 
@@ -179,6 +181,8 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
     text-decoration: none;
     color: black;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+
 }
 
 .nav li:hover{
@@ -231,13 +235,20 @@ border-radius: 0; /* Remove as bordas arredondadas */
 margin: 10px 0; /* Mantém a margem */
 
 
+  justify-content: space-around;
+  flex-wrap:wrap;
+
+
 }
 
 .cabecalho img {
-  border-radius: 50%;
-  width: 100px;
-  height: auto;
+  width: 13.89vw; /* 300px em uma largura de tela média de 1440px */
+  height: 13.89vw; /* Torna a imagem quadrada */
+  object-fit: cover; /* Corta as bordas excedentes sem distorção */
+  border-radius: 0; /* Remove o formato circular */
+  border: 4px solid white; /* Borda mais grossa */
 }
+
 
 .posts {
   display: flex;
@@ -299,4 +310,23 @@ img {
 input {
   border: 2px white;
   border-radius: 4px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }

@@ -2,28 +2,18 @@ document.getElementById('formLogin').addEventListener('submit', function(e) {
     e.preventDefault(); // Previne o envio padrão do formulário
 
     // Captura os dados do formulário
-    const usuario = document.getElementById('input_usuario').value;
-    const senha = document.getElementById('input_senha').value;
+    const formData = new FormData(this);
 
-    // Cria o objeto de dados para enviar
-    const dados = {
-        usuario: usuario,
-        senha: senha
-    };
-
-    // Envia os dados para o PHP via fetch (JSON)
+    // Envia os dados para o PHP via fetch
     fetch('login.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dados) // Envia os dados como JSON
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             alert('Login realizado com sucesso!');
-            window.location.href = 'perfil.html'; // Redireciona para a página de perfil ou feed
+            window.location.href = 'perfilusuario.php'; // Redireciona para a página de perfil do usuário
         } else {
             alert('Erro no login: ' + data.message);
         }
