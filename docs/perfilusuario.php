@@ -1,18 +1,19 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
-    // Redireciona para a página de login caso não esteja logado
     header('Location: login.php');
     exit;
 }
 
 $db = new SQLite3('rede_social.db');
 
-// Recupera as informações do usuário logado
+// Verifica se o ID de outro usuário foi passado pela URL
+$perfil_id = isset($_GET['id']) ? (int)$_GET['id'] : $_SESSION['usuario_id'];
+
+// Recupera as informações do perfil
 $stmt = $db->prepare("SELECT * FROM usuarios WHERE id = :usuario_id");
-$stmt->bindValue(':usuario_id', $_SESSION['usuario_id'], SQLITE3_INTEGER);
+$stmt->bindValue(':usuario_id', $perfil_id, SQLITE3_INTEGER);
 $resultado = $stmt->execute();
 $usuario = $resultado->fetchArray(SQLITE3_ASSOC);
 
@@ -21,19 +22,34 @@ if (!$usuario) {
     exit;
 }
 
-// Dados do usuário
 $nome = $usuario['nome'];
 $data_nascimento = $usuario['data_nascimento'];
 $curso = $usuario['curso'];
 $foto_perfil = $usuario['foto_perfil'] ? $usuario['foto_perfil'] : 'images/usuario_default.jpg';
 $foto_fundo = $usuario['foto_fundo'] ? $usuario['foto_fundo'] : 'images/fundo_default.jpg';
 
-
-// Calcula a idade do usuário
+// Calcula a idade
 $dataNascimento = new DateTime($data_nascimento);
 $hoje = new DateTime();
 $idade = $hoje->diff($dataNascimento)->y;
 
+// Verifica se o perfil acessado é do usuário logado
+$proprio_perfil = $perfil_id === $_SESSION['usuario_id'];
+
+// Recupera as postagens do usuário
+$stmtPosts = $db->prepare("
+    SELECT p.id, p.texto, p.imagem, p.video, p.data_postagem
+    FROM postagens p
+    WHERE p.usuario_id = :usuario_id
+    ORDER BY p.data_postagem DESC
+");
+$stmtPosts->bindValue(':usuario_id', $perfil_id, SQLITE3_INTEGER);
+$resultadoPosts = $stmtPosts->execute();
+
+$postagens = [];
+while ($postagem = $resultadoPosts->fetchArray(SQLITE3_ASSOC)) {
+    $postagens[] = $postagem;
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,99 +57,90 @@ $idade = $hoje->diff($dataNascimento)->y;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usuário</title>
+    <title>Perfil de <?php echo $nome; ?></title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="body-perfilusuario" style="background-image: url('<?php echo $foto_fundo; ?>');">
 
-    <!-- Cabeçalho com a foto e informações do usuário -->
-
-
-
-
-
-
-
-
-    <div class="menu">
-	<h1>UNIMETROFÓRUM</h1> <!-- Logotipo como o primeiro item -->
-        <div class="hamburger" id="hamburger">
-            &#9776;
-        </div>
+<div class="menu">
+	<h1>UNIMETROFÓRUM</h1>
+    <div class="hamburger" id="hamburger">
+        &#9776;
+    </div>
     <nav class="nav" id="nav">
         <ul>
             <li><a href="index2.html">Feed</a></li>
-            <li><a href="perfilusuario.html">Seu perfil</a></li>
-            <li><a href="amigos.html">Amigos</a></li>
-            <li><a href="index.html">Sair</a></li>
+            <li><a href="perfilusuario.php">Seu perfil</a></li>
+            <li><a href="amigos.php">Amigos</a></li>
+            <li><a href="logout.php">Sair</a></li>
         </ul>
     </nav>
 </div>
-    
-    <!-- Cabeçalho abaixo do nav -->
-    <div class="cabecalho">
-      <div class="foto">
-      <img src="<?php echo $foto_perfil; ?>" alt="Foto do perfil">
-      </div>
-      <div class="informacoes">
-      <h1><?php echo $nome; ?></h1>
+
+<div class="cabecalho">
+    <div class="foto">
+        <img src="<?php echo $foto_perfil; ?>" alt="Foto do perfil">
+    </div>
+    <div class="informacoes">
+        <h1><?php echo $nome; ?></h1>
         <h3><?php echo $idade; ?> anos</h3>
         <h3><?php echo $curso; ?></h3>
-      </div>
-      <!-- Formulário para alterar foto de perfil -->
+    </div>
+</div>
+
+<?php if ($proprio_perfil): ?>
+    <!-- Formulários para alterar foto e postar conteúdo -->
+    <div class="form-container">
     <form id="formFotoPerfil" enctype="multipart/form-data">
-        <div>
         <fieldset>
-            <legend><h2>Alterar foto de perfil:</h2></legend>
+            <legend>Alterar foto de perfil:</legend>
             <input type="file" name="fotoPerfil" accept="image/*" required>
-            <button class= botao type="submit">Alterar Foto de Perfil</button>
+            <button class="botao" type="submit">Alterar</button>
         </fieldset>
     </form>
 
-    <!-- Formulário para alterar foto de fundo -->
     <form id="formFotoFundo" enctype="multipart/form-data">
         <fieldset>
-            <legend><h2>Alterar foto de fundo:</h2></legend>
+            <legend>Alterar foto de fundo:</legend>
             <input type="file" name="fotoFundo" accept="image/*" required>
-            <button class= botao type="submit">Alterar Foto de Fundo</button>
+            <button class="botao" type="submit">Alterar</button>
         </fieldset>
     </form>
 </div>
 
-    <!-- Formulário para postar conteúdo -->
     <form id="formPostagem" enctype="multipart/form-data">
         <fieldset>
-            <legend><h2>Fazer uma nova postagem:</h2></legend>
+            <legend>Fazer uma nova postagem:</legend>
             <textarea name="postagemTexto" rows="4" placeholder="Escreva algo..."></textarea>
-            <p>postar imagem:</p>
             <input type="file" name="imagemPost" accept="image/*">
-            <p>postar vídeo:</p>
             <input type="file" name="video" accept="video/mp4">
-            <button class= botao type="submit">Postar</button>
+            <button class="botao" type="submit">Postar</button>
         </fieldset>
     </form>
-    </div>
+<?php endif; ?>
 
+<div id="postagensContainer">
+    <h2>Postagens de <?php echo $nome; ?></h2>
+    <?php if (!empty($postagens)): ?>
+        <?php foreach ($postagens as $postagem): ?>
+            <div class="postagem">
+                <p><?php echo nl2br(htmlspecialchars($postagem['texto'])); ?></p>
+                <?php if ($postagem['imagem']): ?>
+                    <img src="<?php echo $postagem['imagem']; ?>" alt="Imagem da postagem" class="imagempost">
+                <?php endif; ?>
+                <?php if ($postagem['video']): ?>
+                    <video controls class="videopost">
+                        <source src="<?php echo $postagem['video']; ?>" type="video/mp4">
+                    </video>
+                <?php endif; ?>
+                <p><small>Postado em <?php echo date('d/m/Y H:i', strtotime($postagem['data_postagem'])); ?></small></p>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Este usuário ainda não fez postagens.</p>
+    <?php endif; ?>
+</div>
 
-
-
-
-
-
-
-
-
-    
-
-    <!-- Exibição das postagens -->
-    <div id="postagensContainer">
-        <!-- As postagens serão carregadas aqui dinamicamente -->
-    </div>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="mudar_foto.js"></script>
-    <script src="postagens.js"></script>
-    <script src="carregar_postagem.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

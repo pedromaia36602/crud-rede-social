@@ -39,15 +39,7 @@ body {
 
 
 
-/* Para a página perfil2.html */
-.body-perfil2 {
-  background-image: url(1293302.jpg);
-}
 
-
-.body-perfil1 {
-  background-image: url(gihapeghvmy61.png);
-}
 
 .form-container {
   display: flex;
@@ -218,6 +210,14 @@ font-family: 'Silkscreen', sans-serif; /* Muda a fonte para Silkscreen */
     .nav ul li {
         padding: 0; /* Removes padding for alignment */
     }
+    @media (max-width: 768px) {
+      .imagempost, .videopost {
+          margin: 5px auto; /* Reduz o espaço em telas menores */
+          max-width: 90%; /* Reduz a largura para caber melhor em telas menores */
+
+      }
+  }
+  
 }
 
 
@@ -271,7 +271,8 @@ margin: 10px 0; /* Mantém a margem */
 }
 
 .postador img {
-  border-radius: 50%;
+  border: 4px solid white; /* Borda mais grossa */
+border-radius: 0; /* Remove as bordas arredondadas */
   width: 50px;
   height: 50px;
   margin-right: 10px;
@@ -280,13 +281,26 @@ margin: 10px 0; /* Mantém a margem */
 .post1 img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+  border: 4px solid white; /* Borda mais grossa */
+border-radius: 0; /* Remove as bordas arredondadas */
 }
 
-.imagempost{
-  width: 750px;  /* Largura padrão */
-  height: auto;  /* Mantém a proporção */
+.imagempost {
+  border-radius: 0%;
+  max-width: 60%; /* O elemento ocupará no máximo 80% da largura do contêiner */
+  height: auto; /* Mantém a proporção da imagem */
+  margin: 10px auto; /* Adiciona espaço ao redor da imagem */
+  border: 4px solid white; /* Borda mais grossa */
+  display: block; /* Centraliza a imagem horizontalmente */
 }
+
+.videopost {
+  max-width: 60%; /* O elemento ocupará no máximo 80% da largura do contêiner */
+  height: auto; /* Mantém a proporção do vídeo */
+  margin: 10px auto; /* Adiciona espaço ao redor do vídeo */
+  display: block; /* Centraliza o vídeo horizontalmente */
+}
+
 
 img {
   width: 100%;
@@ -325,8 +339,12 @@ input {
 }
 
 .user-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 0%;
   object-fit: cover;
 }
+
+.amigos-lista ul {
+  list-style: none; /* Remove os marcadores da lista */
