@@ -143,5 +143,7 @@ while ($postagem = $resultadoPosts->fetchArray(SQLITE3_ASSOC)) {
 
 <script src="script.js"></script>
 <script src="mudar_foto.js"></script>
+<script src="carregar_postagem.js"></script>
+
 </body>
 </html>
