@@ -37,7 +37,13 @@ body {
   background-image: url(QvWB2dAc-wallha.com.png);
 }
 
+.body-amigos {
+  background-image: url(1293302.jpg);
+}
 
+.body-feed {
+  background-image: url(gihapeghvmy61.png);
+}
 
 
 
@@ -339,8 +345,8 @@ input {
 }
 
 .user-photo {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   border: 2px solid white;
   border-radius: 0%;
   object-fit: cover;
@@ -348,3 +354,18 @@ input {
 
 .amigos-lista ul {
   list-style: none; /* Remove os marcadores da lista */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens "quebrem" para a próxima linha, caso necessário */
+    gap: 10px; /* Espaçamento entre os itens */
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0;
+    margin: 0;
+}
+
+.amigos-lista ul li {
+  display: flex;
+  flex-direction: column; /* Para alinhar foto e nome em coluna */
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}

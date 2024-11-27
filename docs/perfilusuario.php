@@ -69,7 +69,7 @@ while ($postagem = $resultadoPosts->fetchArray(SQLITE3_ASSOC)) {
     </div>
     <nav class="nav" id="nav">
         <ul>
-            <li><a href="index2.html">Feed</a></li>
+            <li><a href="feed.php">Feed</a></li>
             <li><a href="perfilusuario.php">Seu perfil</a></li>
             <li><a href="amigos.php">Amigos</a></li>
             <li><a href="logout.php">Sair</a></li>
@@ -124,7 +124,7 @@ while ($postagem = $resultadoPosts->fetchArray(SQLITE3_ASSOC)) {
     <?php if (!empty($postagens)): ?>
         <?php foreach ($postagens as $postagem): ?>
             <div class="postagem">
-                <p><?php echo nl2br(htmlspecialchars($postagem['texto'])); ?></p>
+                <h1><?php echo nl2br(htmlspecialchars($postagem['texto'])); ?></h1>
                 <?php if ($postagem['imagem']): ?>
                     <img src="<?php echo $postagem['imagem']; ?>" alt="Imagem da postagem" class="imagempost">
                 <?php endif; ?>
@@ -142,5 +142,6 @@ while ($postagem = $resultadoPosts->fetchArray(SQLITE3_ASSOC)) {
 </div>
 
 <script src="script.js"></script>
+<script src="mudar_foto.js"></script>
 </body>
 </html>

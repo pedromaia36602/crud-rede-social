@@ -59,13 +59,13 @@ while ($amigo = $resultadoAmigos->fetchArray(SQLITE3_ASSOC)) {
     <title>Amigos</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="body-amigos" style="background-image: url('<?php echo $foto_fundo; ?>');">
+<body class="body-amigos">
     <div class="menu">
         <h1>UNIMETROFÓRUM</h1>
         <div class="hamburger" id="hamburger">&#9776;</div>
         <nav class="nav" id="nav">
             <ul>
-                <li><a href="index2.html">Feed</a></li>
+                <li><a href="feed.php">Feed</a></li>
                 <li><a href="perfilusuario.php">Seu perfil</a></li>
                 <li><a href="amigos.php">Amigos</a></li>
                 <li><a href="logout.php">Sair</a></li>
@@ -73,39 +73,34 @@ while ($amigo = $resultadoAmigos->fetchArray(SQLITE3_ASSOC)) {
         </nav>
     </div>
 
-    <div class="cabecalho">
-        <div class="foto">
-            <img src="<?php echo $foto_perfil; ?>" alt="Foto do perfil">
-        </div>
-        <div class="informacoes">
-            <h1><?php echo $nome; ?></h1>
-            <h2>Seus amigos:</h2>
-        </div>
-    </div>
-
     <div class="amigos-lista">
+    <h2>Solicitações de Amizade</h2>
+    <ul id="solicitacoesLista"></ul> <!-- Lista de solicitações pendentes -->
+
+    <h2>Seus Amigos</h2>
+    <ul id="amigosLista">
         <?php if (count($amigos) > 0): ?>
-            <ul>
-                <?php foreach ($amigos as $amigo): ?>
-                    <li>
-                        <div class="amigo">
-                            <a href="perfilusuario.php?id=<?php echo $amigo['id']; ?>" style="text-decoration: none; color: inherit;">
-                                <img src="<?php echo $amigo['foto_perfil'] ?: 'images/usuario_default.jpg'; ?>" alt="Foto do amigo" class="user-photo">
-                                <p><?php echo htmlspecialchars($amigo['nome']); ?></p>
-                            </a>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <?php foreach ($amigos as $amigo): ?>
+                <li>
+                    <div class="amigo">
+                        <a href="perfilusuario.php?id=<?php echo $amigo['id']; ?>" style="text-decoration: none; color: inherit;">
+                            <img src="<?php echo $amigo['foto_perfil'] ?: 'images/usuario_default.jpg'; ?>" alt="Foto do amigo" class="user-photo">
+                            <h2><?php echo htmlspecialchars($amigo['nome']); ?></h2>
+                        </a>
+                    </div>
+                </li>
+            <?php endforeach; ?>
         <?php else: ?>
-            <p>Você ainda não tem amigos. Que tal enviar uma solicitação?</p>
+            <li>Você ainda não tem amigos. Que tal enviar uma solicitação?</li>
         <?php endif; ?>
-    </div>
+    </ul>
+</div>
+
 
     <div class="pesquisa-usuarios">
     <h2>Pesquisar usuários</h2>
     <input type="text" id="nomePesquisa" placeholder="Digite um nome para pesquisar">
-    <button onclick="pesquisarUsuarios()">Pesquisar</button>
+    <button class="botao" onclick="pesquisarUsuarios()">Pesquisar</button>
     <ul id="resultados"></ul>
 </div>
 <ul id="solicitacoesLista"></ul>

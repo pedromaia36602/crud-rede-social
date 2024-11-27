@@ -26,12 +26,13 @@ function listarSolicitacoes() {
                 if (solicitacoes.length > 0) {
                     solicitacoes.forEach(solicitacao => {
                         const li = document.createElement('li');
+                        li.setAttribute('data-amizade-id', solicitacao.amizade_id); // Adicionado
                         li.innerHTML = `
                             <div>
                                 <a href="perfilusuario.php?id=${solicitacao.usuario_id}" style="text-decoration: none; color: inherit;">
                                     <img src="${solicitacao.foto_perfil || 'images/usuario_default.jpg'}" 
                                          alt="${solicitacao.nome}" 
-                                         style="width: 50px; height: 50px; border-radius: 50%;">
+                                         class="user-photo">
                                     <span>${solicitacao.nome}</span>
                                 </a>
                                 <button onclick="responderSolicitacao(${solicitacao.amizade_id}, 'aceito')">Aceitar</button>
@@ -40,6 +41,7 @@ function listarSolicitacoes() {
                         `;
                         lista.appendChild(li);
                     });
+
                 } else {
                     lista.innerHTML = '<li>Nenhuma solicitação pendente.</li>';
                 }

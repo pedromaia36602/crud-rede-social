@@ -13,7 +13,7 @@ document.getElementById('formLogin').addEventListener('submit', function(e) {
     .then(data => {
         if (data.success) {
             alert('Login realizado com sucesso!');
-            window.location.href = 'perfilusuario.php'; // Redireciona para a página de perfil do usuário
+            window.location.href = 'feed.php'; // Redireciona para a página de perfil do usuário
         } else {
             alert('Erro no login: ' + data.message);
         }
