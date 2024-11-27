@@ -1,5 +1,6 @@
 # crud-rede-social
-crud de uma rede social para aula de desenvolvimento web
+CRUD de uma rede social para aula de desenvolvimento web.
+Você se cadastra, entra, muda sua foto de perfil, de fundo e pode postar textos e imagens, pode também adicionar outras pessoas, ver o perfil e os posts dela.
 
 ## Integrantes
 - Pedro Adolfo Custódio Maia
